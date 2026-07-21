@@ -19,8 +19,8 @@ jq -e '
     (.name | type == "string" and length > 0) and
     (.source.source == "local") and
     (.source.path | startswith("./plugins/")) and
-    (.policy.installation == "AVAILABLE") and
-    (.policy.authentication == "ON_INSTALL") and
+    (.policy.installation | IN("NOT_AVAILABLE", "AVAILABLE", "INSTALLED_BY_DEFAULT")) and
+    (.policy.authentication | IN("ON_INSTALL", "ON_USE")) and
     (.category | type == "string" and length > 0)
   )
 ' "${marketplace}" >/dev/null
@@ -43,6 +43,13 @@ while IFS=$'\t' read -r name relative_path; do
     exit 1
   }
   jq -e '.version | type == "string" and test("^[0-9]+\\.[0-9]+\\.[0-9]+([+-][0-9A-Za-z.-]+)?$")' "${manifest}" >/dev/null
+  icon="$(jq -r --arg name "${name}" '.plugins[] | select(.name == $name) | .icon // empty' "${marketplace}")"
+  if [[ -n "${icon}" ]]; then
+    test -f "${root}/${icon#./}" || {
+      echo "Missing marketplace icon: ${icon}" >&2
+      exit 1
+    }
+  fi
 done < <(jq -r '.plugins[] | [.name, .source.path] | @tsv' "${marketplace}")
 
 if grep -R -n -E '\[TODO:|TODO' "${root}/.agents" "${root}/plugins"; then

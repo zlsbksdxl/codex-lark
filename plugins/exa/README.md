@@ -8,6 +8,6 @@ The plugin provides:
 - `web_fetch_exa` for full-page retrieval
 - the implicitly invoked `exa-web-search` Skill, which prefers Exa for general online research
 
-The launcher reads `EXA_API_KEY` from the environment or from `~/.codex/mcp/exa-mcp.env`, then starts the official `exa-mcp-server` npm package. No credential is included in this repository.
+The plugin connects to Exa's official remote MCP endpoint and requests browser OAuth. Codex opens the account connection flow during installation or first use; no API key is stored in this repository or its plugin configuration.
 
 See the repository [README](../../README.md#configure-exa) for installation and setup.

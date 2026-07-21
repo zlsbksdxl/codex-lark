@@ -10,18 +10,35 @@
 
 | 插件 | 功能 | 额外要求 |
 | --- | --- | --- |
-| `exa` | 使用 Exa MCP 搜索网络、获取网页全文；一般网络检索会优先调用 Exa | Node.js 16+、`npx`、用户自己的 Exa API Key |
-| `feishu2codex` | 为飞书/Lark 文档、知识库、多维表格、消息、日历、任务、会议、邮箱、审批等工作流提供 27 个 Codex Skills | Node.js 16+、官方 `lark-cli`、飞书/Lark 应用与 OAuth 授权 |
+| `exa` | 通过官方 Exa 远程 MCP 搜索网络、获取网页全文；一般网络检索会优先调用 Exa | 通过浏览器 OAuth 连接 Exa 账号 |
+| `feishu2codex` | 提供 27 个官方 Lark CLI Skills，并引导设置飞书/Lark 文档、知识库、多维表格、消息、日历、任务、会议、邮箱、审批等工作流 | 首次设置运行时需要 Node.js/npm，并需完成飞书/Lark OAuth 授权 |
 
-## 安装 Marketplace
+## 在 Codex 中添加这个 Marketplace
+
+### 桌面应用
+
+1. 打开 **Codex → Plugins**。
+2. 打开插件搜索框旁的 Marketplace 来源菜单，选择 **+ Add More**。
+3. 粘贴本仓库地址：
+
+   ```text
+   https://github.com/zlsbksdxl/codex-plugins.git
+   ```
+
+4. 选择 **Codex Plugins**，打开 `exa` 或 `feishu2codex` 并安装。
+
+这里必须填写 Git 仓库 URL，不要填写原始 `marketplace.json` 文件 URL。Codex 会克隆仓库并自动发现 `.agents/plugins/marketplace.json`。
+
+### CLI
 
 ```bash
-codex plugin marketplace add zlsbksdxl/codex-plugins
-```
+codex plugin marketplace add \
+  'https://github.com/zlsbksdxl/codex-plugins.git' \
+  --ref main \
+  --sparse '.agents/plugins' \
+  --sparse 'plugins'
 
-安装需要的插件：
-
-```bash
+codex plugin list --marketplace codex-plugins --available --json
 codex plugin add exa@codex-plugins
 codex plugin add feishu2codex@codex-plugins
 ```
@@ -30,36 +47,18 @@ codex plugin add feishu2codex@codex-plugins
 
 ## 配置 Exa
 
-1. 从 [Exa Dashboard](https://dashboard.exa.ai/api-keys) 获取自己的 API Key。
-2. 在本机创建 `~/.codex/mcp/exa-mcp.env`，内容如下：
-
-```bash
-mkdir -p ~/.codex/mcp
-```
-
-```dotenv
-EXA_API_KEY=your_exa_api_key
-```
-
-3. 限制文件权限：
-
-```bash
-chmod 600 ~/.codex/mcp/exa-mcp.env
-```
-
-不要把真实 API Key 写入本仓库、issue、日志或聊天记录。插件也支持从进程环境变量 `EXA_API_KEY` 读取密钥。
+插件使用 Exa 官方远程 MCP OAuth 地址。安装时或首次使用 Exa 时，Codex 会打开账号连接流程；登录 Exa 并确认授权即可，不需要把 API Key 粘贴到仓库或插件配置中。
 
 ## 配置飞书/Lark
 
-安装官方 CLI：
+安装后新建一个任务，并输入：
+
+> 帮我设置并连接飞书/Lark 到 Codex。
+
+内置的 `lark-setup` Skill 会检查 `lark-cli`，缺失时安装与插件匹配的官方运行时，然后初始化应用配置并启动浏览器/设备 OAuth。对应的手动命令如下：
 
 ```bash
-npx @larksuite/cli@latest install
-```
-
-完成应用配置和 OAuth 登录：
-
-```bash
+npx @larksuite/cli@1.0.73 install
 lark-cli config init
 lark-cli auth login --recommend
 lark-cli auth status --json --verify
@@ -85,7 +84,7 @@ codex plugin add feishu2codex@codex-plugins
     └── feishu2codex/
 ```
 
-每个插件拥有独立的 manifest、版本、Skills、资源和运行时要求。Marketplace 只负责发现与安装，不会共享你的 Exa Key、飞书应用凭据或 OAuth Token。
+每个插件拥有独立的 manifest、版本、Skills、资源和运行时要求。Marketplace 负责发现与安装；Exa 认证交给官方 OAuth 服务，飞书/Lark 凭据保存在官方 CLI 的本地配置与系统凭据存储中。
 
 ## 上游与许可证
 
