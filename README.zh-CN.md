@@ -46,7 +46,7 @@ codex plugin list --marketplace codex-lark --available --json
 codex plugin add feishu2codex@codex-lark
 ```
 
-安装后请完全重启 ChatGPT/Codex 桌面应用，并在新任务中使用插件，以便重新加载 Skills。
+安装后请完全重启 ChatGPT/Codex 桌面应用，检查并信任插件的设置 Hook，然后在新任务中使用插件，以便加载 Skills 和 Hook。
 
 ## 连接飞书/Lark
 
@@ -54,11 +54,11 @@ codex plugin add feishu2codex@codex-lark
 
 > 帮我设置并连接飞书/Lark 到 Codex。
 
-内置的 `lark-setup` Skill 会检查 `lark-cli`，缺失时安装与插件匹配的官方运行时，然后初始化应用配置并启动浏览器/设备 OAuth。对应的手动命令如下：
+Codex 不会在 Marketplace 安装事务内执行任意命令。首个新任务启动时，插件中已信任的设置 Hook 会在缺失时安装匹配的 `lark-cli` 运行时，并在完成设置前将飞书/Lark 工作流标记为未就绪。内置的 `lark-setup` Skill 随后初始化应用配置并启动浏览器/设备 OAuth。对应的手动命令如下：
 
 ```bash
-npx @larksuite/cli@1.0.73 install
-lark-cli config init
+npm install --global --no-audit --no-fund @larksuite/cli@1.0.73
+lark-cli config init --new
 lark-cli auth login --recommend
 lark-cli auth status --json --verify
 ```

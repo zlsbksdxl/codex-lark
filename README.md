@@ -46,7 +46,7 @@ codex plugin list --marketplace codex-lark --available --json
 codex plugin add feishu2codex@codex-lark
 ```
 
-Fully restart the ChatGPT/Codex desktop app after installation, then use a new task so the Skills are reloaded.
+Fully restart the ChatGPT/Codex desktop app after installation, review and trust the plugin's setup hook, then use a new task so the Skills and hook are loaded.
 
 ## Connect Feishu/Lark
 
@@ -54,11 +54,11 @@ Start a new task and ask:
 
 > Set up and connect Feishu/Lark to Codex.
 
-The bundled `lark-setup` Skill checks for `lark-cli`, installs the matching official runtime if it is missing, initializes app configuration, and starts browser/device OAuth. The equivalent manual commands are:
+Codex does not run arbitrary commands inside the Marketplace install transaction. On the first new task, the plugin's trusted setup hook installs the matching `lark-cli` runtime if it is missing and requires setup before Feishu/Lark workflows are treated as ready. The bundled `lark-setup` Skill then initializes app configuration and starts browser/device OAuth. The equivalent manual commands are:
 
 ```bash
-npx @larksuite/cli@1.0.73 install
-lark-cli config init
+npm install --global --no-audit --no-fund @larksuite/cli@1.0.73
+lark-cli config init --new
 lark-cli auth login --recommend
 lark-cli auth status --json --verify
 ```

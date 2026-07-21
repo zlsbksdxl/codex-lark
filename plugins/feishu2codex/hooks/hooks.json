@@ -1,0 +1,19 @@
+{
+  "description": "Install and verify the official Lark CLI before Feishu/Lark workflows run.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$PLUGIN_ROOT/scripts/bootstrap-lark-cli.cjs\"",
+            "commandWindows": "node \"%PLUGIN_ROOT%\\scripts\\bootstrap-lark-cli.cjs\"",
+            "timeout": 240,
+            "statusMessage": "Preparing Feishu/Lark CLI"
+          }
+        ]
+      }
+    ]
+  }
+}

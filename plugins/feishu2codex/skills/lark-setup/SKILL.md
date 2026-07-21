@@ -9,19 +9,19 @@ Use this workflow when the user installs `feishu2codex`, asks to connect Feishu/
 
 ## 1. Ensure the official runtime exists
 
-Check without changing state:
+The plugin's trusted `SessionStart` hook normally installs the matching runtime before this Skill runs. Check the result without changing state:
 
 ```bash
 command -v lark-cli && lark-cli --version
 ```
 
-If `lark-cli` is missing, verify that `npx` is available, then install the runtime version matching the bundled Skills:
+If `lark-cli` is still missing, verify that `npm` is available, then install the runtime version matching the bundled Skills:
 
 ```bash
-npx @larksuite/cli@1.0.73 install
+npm install --global --no-audit --no-fund @larksuite/cli@1.0.73
 ```
 
-Run `lark-cli --version` again and require version `1.0.73` before continuing. If `npx` is unavailable, tell the user that Node.js/npm is required and stop before attempting authentication.
+Run `lark-cli --version` again and require version `1.0.73` before continuing. If `npm` is unavailable, tell the user that Node.js/npm is required and stop before attempting authentication.
 
 ## 2. Configure and authenticate
 
