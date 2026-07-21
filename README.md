@@ -16,21 +16,45 @@ A Git-backed Codex Marketplace for Feishu/Lark workflows through the official [L
 
 The plugin packages the agent-oriented workflows from the official [Lark CLI](https://github.com/larksuite/cli) so Codex can work across Feishu/Lark through structured CLI commands.
 
+### Lark CLI business capabilities
+
 | Area | Capabilities |
 | --- | --- |
-| Messaging | Send and reply to messages, search chat history, manage chats and members, handle media, reactions, interactive cards, and urgent notifications. |
-| Docs and Drive | Create, read, and edit documents; upload, download, organize, search, import, and export files; manage permissions, comments, versions, and secure labels. |
-| Markdown, Wiki, and Whiteboards | Edit native Markdown files, manage knowledge spaces and nodes, and inspect or update embedded whiteboards. |
-| Sheets and Base | Build and edit spreadsheets, formulas, charts, pivot tables, and formatting; manage Base tables, fields, records, views, forms, dashboards, workflows, and roles. |
-| Slides | Create presentations, read slide content, and add, remove, or update individual slides. |
-| Calendar and Tasks | Manage events, attendees, rooms, availability, and scheduling; create and organize tasks, lists, subtasks, reminders, assignees, and attachments. |
-| Meetings and Minutes | Search past meetings, retrieve summaries, action items, chapters, transcripts, recordings, and Minutes artifacts; support authorized in-meeting agent actions. |
-| Mail and Contacts | Search, read, draft, send, reply to, and forward mail; manage mail rules and resolve people by name, email, phone number, or Open ID. |
-| Approvals, Attendance, and OKRs | Query and process approval tasks and instances, inspect personal attendance records, and manage objectives, key results, alignment, metrics, and progress. |
-| Apps, Events, and Automation | Create and publish Miaoda/Spark apps, manage environments and automation, consume real-time Feishu events, and generate meeting-summary or standup reports. |
-| Extensibility | Explore raw Feishu OpenAPI operations not covered by existing commands and package repeatable API workflows as custom Skills. |
+| Calendar | View, create, search, and update events; manage attendees, invitations, meeting rooms, free/busy status, and time suggestions. |
+| Messenger | Send and reply to messages, create and manage chats and members, search history and threads, transfer media, add reactions, process interactive cards, and send urgent notifications. |
+| Docs | Create, read, and update documents; handle document media, embedded resources, whiteboards, and mind notes. |
+| Drive | Upload, download, search, copy, move, delete, import, and export files; manage folders, metadata, permissions, comments, subscriptions, versions, and secure labels. |
+| Markdown | Create, fetch, patch, overwrite, compare, and upload Drive-native Markdown files. |
+| Base | Manage tables, fields, records, views, formulas, lookups, forms, dashboards, workflows, roles, permissions, and aggregated analysis. |
+| Sheets | Create workbooks and sheets; read and write cells, formulas, styles, images, and comments; manage charts, pivot tables, filters, conditional formatting, and imports or exports. |
+| Slides | Create presentations, read content, and add, remove, read, or partially replace individual slides. |
+| Tasks | Create, query, update, complete, and organize tasks, lists, subtasks, assignees, reminders, comments, attachments, and task agents. |
+| Wiki | Create and manage knowledge spaces, members, nodes, documents, shortcuts, and node hierarchies. |
+| Contacts | Resolve people by name, email, phone number, or Open ID and retrieve profiles, departments, contact details, status, and signatures. |
+| Mail | Browse, search, and read mail; create and edit drafts; send, reply to, forward, recall, label, and watch messages; manage contacts and inbox rules. |
+| Meetings | Search historical meetings and retrieve participants, summaries, action items, chapters, transcripts, Minutes artifacts, and recordings. |
+| Attendance | Query the signed-in user's attendance check-in records. |
+| Approval | Search approval definitions; initiate and inspect instances; query, approve, reject, transfer, roll back, add signers to, remind, cancel, or CC approval work. |
+| OKR | Query, create, and update cycles, objectives, key results, alignment, metrics, and progress records. |
+| Miaoda/Spark Apps | Create and develop apps, publish HTML and full-stack projects, manage cloud generation, databases, files, environments, roles, observability, access scope, and automation. |
+
+### Plugin workflow and extension capabilities
+
+| Capability | What it adds |
+| --- | --- |
+| Setup and authorization | Installs the matching Lark CLI runtime, initializes app configuration, guides browser/device OAuth, verifies identities, and manages scopes. |
+| Whiteboards | Export whiteboards as images or raw nodes and update diagrams through supported structured formats. |
+| Minutes and meeting notes | Search, upload, download, read, and edit Minutes artifacts; retrieve a known meeting note's metadata, linked document, and raw transcript. |
+| Live meeting agent | Join or leave active meetings as an app bot, inspect live meeting events, and send in-meeting text or reactions where enabled. |
+| Real-time events | Subscribe to and consume Feishu/Lark events as bounded or long-running NDJSON streams for messages, approvals, tasks, meetings, Minutes, and whiteboards. |
+| Meeting-summary workflow | Aggregate meetings over a time range into a structured summary report. |
+| Standup workflow | Combine calendar agendas and unfinished tasks into daily or weekly standup summaries. |
+| OpenAPI explorer | Discover and call official Feishu OpenAPI endpoints not yet covered by a packaged command. |
+| Custom Skill maker | Turn repeatable Lark CLI or OpenAPI operations into reusable Skills. |
 
 Lark CLI supports user and bot identities, scoped OAuth, structured JSON output, dry-run previews, and confirmation gates for high-risk writes. The plugin keeps those controls in the Codex workflow.
+
+**Not included:** Feishu Projects/Meegle. The upstream Lark CLI README delegates that domain to the separate [meegle-cli](https://github.com/larksuite/meegle-cli), and this plugin does not currently package it. Other capabilities depend on the tenant's enabled products, app scopes, user OAuth scopes, and rollout eligibility. Miaoda/Spark is Feishu-only, and live meeting agent actions require additional app privileges.
 
 ## Add This Marketplace to Codex
 
