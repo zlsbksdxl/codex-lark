@@ -10,4 +10,4 @@ The plugin provides:
 
 The launcher reads `EXA_API_KEY` from the environment or from `~/.codex/mcp/exa-mcp.env`, then starts the official `exa-mcp-server` npm package. No credential is included in this repository.
 
-See the repository [README](../../README.md#配置-exa) for installation and setup.
+See the repository [README](../../README.md#configure-exa) for installation and setup.
