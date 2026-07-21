@@ -1,4 +1,4 @@
-# zlsbksdxl Codex Plugins
+# Codex Plugins
 
 [English](README.en.md)
 
