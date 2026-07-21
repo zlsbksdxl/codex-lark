@@ -18,11 +18,16 @@
 
 1. 打开 **Codex → Plugins**。
 2. 打开插件搜索框旁的 Marketplace 来源菜单，选择 **+ Add More**。
+
+   ![打开 Add marketplace 菜单](docs/images/add-marketplace-menu.png)
+
 3. 粘贴本仓库地址：
 
    ```text
    https://github.com/zlsbksdxl/codex-lark.git
    ```
+
+   ![输入 Codex Lark 仓库地址](docs/images/add-marketplace-dialog.png)
 
 4. 选择 **Codex Lark**，打开 `feishu2codex` 并安装。
 

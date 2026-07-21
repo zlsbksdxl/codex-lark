@@ -18,11 +18,16 @@ A Git-backed Codex Marketplace for Feishu/Lark workflows through the official [L
 
 1. Open **Codex → Plugins**.
 2. Open the Marketplace source menu beside the plugin search field and select **+ Add More**.
+
+   ![Open the Add marketplace command](docs/images/add-marketplace-menu.png)
+
 3. Paste this repository URL:
 
    ```text
    https://github.com/zlsbksdxl/codex-lark.git
    ```
+
+   ![Enter the Codex Lark repository URL](docs/images/add-marketplace-dialog.png)
 
 4. Select **Codex Lark**, open `feishu2codex`, and install it.
 
