@@ -3,10 +3,10 @@
   "version": "1.0.73+codex.marketplace.1",
   "description": "Community Codex plugin packaging lark-cli skills for Feishu and Lark workflows.",
   "author": {
-    "name": "Codex Plugins contributors"
+    "name": "Codex Lark contributors"
   },
-  "homepage": "https://github.com/zlsbksdxl/codex-plugins/tree/main/plugins/feishu2codex",
-  "repository": "https://github.com/zlsbksdxl/codex-plugins",
+  "homepage": "https://github.com/zlsbksdxl/codex-lark/tree/main/plugins/feishu2codex",
+  "repository": "https://github.com/zlsbksdxl/codex-lark",
   "license": "MIT",
   "keywords": [
     "lark",
@@ -20,7 +20,7 @@
     "displayName": "Feishu to Codex",
     "shortDescription": "Use Lark and Feishu from Codex through lark-cli skills.",
     "longDescription": "Adds the official lark-cli skill set plus a guided setup workflow. Codex can install the matching runtime on first use, open browser/device OAuth, inspect scopes, and operate Lark/Feishu domains such as Messenger, Docs, Sheets, Base, Calendar, Tasks, Meetings, Mail, Approval, OKR, and Drive.",
-    "developerName": "Codex Plugins Community",
+    "developerName": "Codex Lark Community",
     "category": "Productivity",
     "capabilities": [
       "Interactive",

@@ -10,7 +10,10 @@ command -v jq >/dev/null 2>&1 || {
 }
 
 jq -e '
-  .name | type == "string" and length > 0
+  .name == "codex-lark" and
+  .interface.displayName == "Codex Lark" and
+  (.plugins | length == 1) and
+  .plugins[0].name == "feishu2codex"
 ' "${marketplace}" >/dev/null
 
 jq -e '

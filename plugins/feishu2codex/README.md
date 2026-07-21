@@ -22,4 +22,4 @@ lark-cli auth login --recommend
 lark-cli auth status --json --verify
 ```
 
-The plugin does not contain application secrets, OAuth tokens, or local configuration. `lark-cli` keeps credentials in its local configuration and OS credential storage. See the repository [README](../../README.md#configure-feishulark) for complete installation instructions.
+The plugin does not contain application secrets, OAuth tokens, or local configuration. `lark-cli` keeps credentials in its local configuration and OS credential storage. See the repository [README](../../README.md#connect-feishulark) for complete installation instructions.
