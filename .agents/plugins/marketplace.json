@@ -1,7 +1,7 @@
 {
-  "name": "zlsbksdxl-codex-plugins",
+  "name": "codex-plugins",
   "interface": {
-    "displayName": "zlsbksdxl Codex Plugins"
+    "displayName": "Codex Plugins"
   },
   "plugins": [
     {
