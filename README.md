@@ -92,13 +92,28 @@ codex plugin add feishu2codex@codex-lark
 
 Fully restart the ChatGPT/Codex desktop app after installation, review and trust the plugin's setup hook, then use a new task so the Skills and hook are loaded.
 
-## Connect Feishu/Lark
+## First-Time Setup and Authorization
 
-Start a new task and ask:
+### Option 1: Click **Try** in Codex
 
-> Set up and connect Feishu/Lark to Codex.
+1. After installing the plugin, open its details page and click **Try**. Send the suggested **Set up and connect Feishu/Lark to Codex** prompt in the new task.
 
-Codex does not run arbitrary commands inside the Marketplace install transaction. On the first new task, the plugin's trusted setup hook installs the matching `lark-cli` runtime if it is missing and requires setup before Feishu/Lark workflows are treated as ready. The bundled `lark-setup` Skill then initializes app configuration and starts browser/device OAuth. The equivalent manual commands are:
+   ![Try the Feishu to Codex setup prompt](docs/images/try-feishu-setup.jpg)
+
+2. Review and trust the plugin's setup Hook when Codex asks. On this first new task, the Hook detects whether `lark-cli` is available and automatically installs the matching `lark-cli@1.0.73` runtime when it is missing.
+3. Codex starts the bundled `lark-setup` workflow and displays the links or QR codes needed for Feishu/Lark application configuration and user OAuth. Open the link or scan the QR code, complete the step in Feishu/Lark, and then reply to Codex so it can continue and verify the connection.
+
+   ![Codex installs Lark CLI and displays the Feishu authorization flow](docs/images/feishu-setup-authorization-redacted.jpg)
+
+   The link and QR code in this screenshot are redacted. Every setup run generates its own short-lived authorization information.
+
+4. The plugin is ready only after `lark-cli auth status --json --verify` confirms a valid user identity. Configuration and credentials remain on the user's machine, so setup is normally required only once. Reauthorize if a token expires or is revoked, or when a workflow needs additional scopes.
+
+Codex does not run arbitrary commands inside the Marketplace installation transaction itself. Clicking **Try** opens the first task in which the trusted setup Hook can perform the automatic CLI installation.
+
+### Option 2: Use the Terminal
+
+The following commands perform the equivalent CLI installation, application configuration, user authorization, and connection check:
 
 ```bash
 npm install --global --no-audit --no-fund @larksuite/cli@1.0.73
@@ -107,7 +122,7 @@ lark-cli auth login --recommend
 lark-cli auth status --json --verify
 ```
 
-Credentials remain local to the user. Grant only the scopes needed for the intended workflows.
+After the final command succeeds, restart Codex or open a new task and use the Feishu/Lark Skills normally. Grant only the scopes needed for the intended workflows.
 
 ## Update
 

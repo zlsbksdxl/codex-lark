@@ -92,13 +92,28 @@ codex plugin add feishu2codex@codex-lark
 
 安装后请完全重启 ChatGPT/Codex 桌面应用，检查并信任插件的设置 Hook，然后在新任务中使用插件，以便加载 Skills 和 Hook。
 
-## 连接飞书/Lark
+## 首次设置与授权
 
-新建一个任务并输入：
+### 方式一：在 Codex 中点击“试用”
 
-> 帮我设置并连接飞书/Lark 到 Codex。
+1. 安装插件后打开插件详情页，点击“试用”（**Try**），在新任务中发送建议的 **Set up and connect Feishu/Lark to Codex** 提示词。
 
-Codex 不会在 Marketplace 安装事务内执行任意命令。首个新任务启动时，插件中已信任的设置 Hook 会在缺失时安装匹配的 `lark-cli` 运行时，并在完成设置前将飞书/Lark 工作流标记为未就绪。内置的 `lark-setup` Skill 随后初始化应用配置并启动浏览器/设备 OAuth。对应的手动命令如下：
+   ![试用 Feishu to Codex 设置提示词](docs/images/try-feishu-setup.jpg)
+
+2. Codex 提示时，检查并信任插件的设置 Hook。首个新任务启动后，Hook 会检测 `lark-cli` 是否可用；如果缺失，会自动安装与插件匹配的 `lark-cli@1.0.73`。
+3. Codex 随后运行内置的 `lark-setup` 流程，按顺序给出飞书/Lark 应用配置和用户 OAuth 所需的链接或二维码。打开链接或扫码，在飞书/Lark 中完成当前步骤，再回复 Codex；Codex 会继续发起用户授权并验证连接。
+
+   ![Codex 自动安装 Lark CLI 并显示飞书授权流程](docs/images/feishu-setup-authorization-redacted.jpg)
+
+   上图中的链接和二维码已经脱敏。每次设置都会生成独立且短时有效的授权信息。
+
+4. 只有当 `lark-cli auth status --json --verify` 验证出有效用户身份后，插件才会进入可用状态。配置和凭据保存在用户本机，正常情况下只需完成一次设置，后续即可持续使用；令牌过期或被撤销、工作流需要新增权限时，需要重新授权。
+
+Codex 不会在 Marketplace 安装事务本身执行任意命令。点击“试用”会打开首个新任务，受信任的设置 Hook 会在该任务启动时自动安装 CLI。
+
+### 方式二：在终端中执行等价命令
+
+下面的命令依次完成 CLI 安装、应用配置、用户授权和连接验证：
 
 ```bash
 npm install --global --no-audit --no-fund @larksuite/cli@1.0.73
@@ -107,7 +122,7 @@ lark-cli auth login --recommend
 lark-cli auth status --json --verify
 ```
 
-凭据保存在用户本机。建议按实际任务申请最小权限。
+最后一条命令验证成功后，重启 Codex 或新建任务，即可正常使用飞书/Lark Skills。建议按实际任务申请最小权限。
 
 ## 更新
 
