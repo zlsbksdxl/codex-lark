@@ -10,13 +10,35 @@ A Git-backed Codex marketplace containing community integrations for Exa web sea
 
 | Plugin | Purpose | Requirements |
 | --- | --- | --- |
-| `exa` | Search the web and fetch full pages through Exa MCP. General web research prefers Exa automatically. | Node.js 16+, `npx`, and the user's own Exa API key |
-| `feishu2codex` | Adds 27 Codex Skills for Feishu/Lark Docs, Wiki, Base, messaging, calendar, tasks, meetings, mail, approvals, and more. | Node.js 16+, official `lark-cli`, and Feishu/Lark app plus OAuth authorization |
+| `exa` | Search the web and fetch full pages through the official Exa remote MCP. General web research prefers Exa automatically. | Exa account connected through browser OAuth |
+| `feishu2codex` | Adds 27 official Lark CLI Skills plus guided setup for Feishu/Lark Docs, Wiki, Base, messaging, calendar, tasks, meetings, mail, approvals, and more. | Node.js/npm for first-use runtime setup, plus Feishu/Lark OAuth authorization |
 
-## Install
+## Add this Marketplace to Codex
+
+### Desktop app
+
+1. Open **Codex → Plugins**.
+2. Open the marketplace source menu beside the plugin search field and select **+ Add More**.
+3. Paste this repository URL:
+
+   ```text
+   https://github.com/zlsbksdxl/codex-plugins.git
+   ```
+
+4. Select **Codex Plugins**, open `exa` or `feishu2codex`, and install it.
+
+Use the Git repository URL, not a raw `marketplace.json` URL. Codex clones the repository and discovers `.agents/plugins/marketplace.json` automatically.
+
+### CLI
 
 ```bash
-codex plugin marketplace add zlsbksdxl/codex-plugins
+codex plugin marketplace add \
+  'https://github.com/zlsbksdxl/codex-plugins.git' \
+  --ref main \
+  --sparse '.agents/plugins' \
+  --sparse 'plugins'
+
+codex plugin list --marketplace codex-plugins --available --json
 codex plugin add exa@codex-plugins
 codex plugin add feishu2codex@codex-plugins
 ```
@@ -25,28 +47,18 @@ Fully restart the ChatGPT/Codex desktop app after installation, then use a new t
 
 ## Configure Exa
 
-Create `~/.codex/mcp/exa-mcp.env` with your own key:
-
-```bash
-mkdir -p ~/.codex/mcp
-```
-
-```dotenv
-EXA_API_KEY=your_exa_api_key
-```
-
-Then restrict access:
-
-```bash
-chmod 600 ~/.codex/mcp/exa-mcp.env
-```
-
-Never commit a real API key. The plugin also reads `EXA_API_KEY` from the process environment.
+The plugin uses Exa's official remote MCP OAuth endpoint. During installation, or the first time Exa is used, Codex opens an account connection flow. Sign in to Exa and approve access; no API key needs to be pasted into the repository or plugin configuration.
 
 ## Configure Feishu/Lark
 
+After installation, start a new task and ask:
+
+> Set up and connect Feishu/Lark to Codex.
+
+The bundled `lark-setup` Skill checks for `lark-cli`, installs the matching official runtime if it is missing, initializes the app configuration, and starts browser/device OAuth. The equivalent manual commands are:
+
 ```bash
-npx @larksuite/cli@latest install
+npx @larksuite/cli@1.0.73 install
 lark-cli config init
 lark-cli auth login --recommend
 lark-cli auth status --json --verify
@@ -72,7 +84,7 @@ codex plugin add feishu2codex@codex-plugins
     └── feishu2codex/
 ```
 
-Each plugin has its own manifest, version, Skills, assets, and runtime requirements. The marketplace only handles discovery and installation; it does not share your Exa key, Feishu/Lark application credentials, or OAuth tokens.
+Each plugin has its own manifest, version, Skills, assets, and runtime requirements. The marketplace handles discovery and installation. Exa authentication is delegated to the official OAuth service; Feishu/Lark credentials stay in the official CLI's local configuration and OS credential storage.
 
 ## Upstream and licensing
 

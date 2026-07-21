@@ -1,6 +1,6 @@
 {
   "name": "exa",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Community Codex plugin for web search and full-page retrieval through the official Exa MCP server.",
   "author": {
     "name": "Codex Plugins contributors"
@@ -18,7 +18,7 @@
   "interface": {
     "displayName": "Exa Web Search",
     "shortDescription": "Search and fetch current web sources with Exa.",
-    "longDescription": "Adds the official Exa MCP server to Codex, with an implicitly triggered skill that prioritizes Exa for online research, current information, source discovery, and URL reading. Requires the user's own Exa API key.",
+    "longDescription": "Connects Codex to the official Exa remote MCP server with browser OAuth, plus an implicitly triggered skill that prioritizes Exa for online research, current information, source discovery, and URL reading.",
     "developerName": "Codex Plugins Community",
     "category": "Productivity",
     "capabilities": [
@@ -26,9 +26,9 @@
       "Read"
     ],
     "defaultPrompt": [
+      "Connect my Exa account to Codex.",
       "Search the web for current sources on this topic.",
-      "Research this question with Exa and cite the sources.",
-      "Read and summarize this webpage with Exa."
+      "Research this question with Exa and cite the sources."
     ],
     "brandColor": "#111111",
     "composerIcon": "./assets/logo.svg",

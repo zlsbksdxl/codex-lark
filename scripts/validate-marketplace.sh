@@ -16,11 +16,12 @@ jq -e '
 jq -e '
   .plugins | type == "array" and length > 0 and
   all(.[];
+    ((keys | sort) == ["category", "name", "policy", "source"]) and
     (.name | type == "string" and length > 0) and
     (.source.source == "local") and
     (.source.path | startswith("./plugins/")) and
-    (.policy.installation == "AVAILABLE") and
-    (.policy.authentication == "ON_INSTALL") and
+    (.policy.installation | IN("NOT_AVAILABLE", "AVAILABLE", "INSTALLED_BY_DEFAULT")) and
+    (.policy.authentication | IN("ON_INSTALL", "ON_USE")) and
     (.category | type == "string" and length > 0)
   )
 ' "${marketplace}" >/dev/null
