@@ -6,7 +6,6 @@
   "plugins": [
     {
       "name": "exa",
-      "displayName": "Exa Web Search",
       "source": {
         "source": "local",
         "path": "./plugins/exa"
@@ -15,13 +14,10 @@
         "installation": "AVAILABLE",
         "authentication": "ON_INSTALL"
       },
-      "category": "Productivity",
-      "description": "Search and fetch current web sources through Exa with browser OAuth.",
-      "icon": "./plugins/exa/assets/logo.svg"
+      "category": "Productivity"
     },
     {
       "name": "feishu2codex",
-      "displayName": "Feishu to Codex",
       "source": {
         "source": "local",
         "path": "./plugins/feishu2codex"
@@ -30,9 +26,7 @@
         "installation": "AVAILABLE",
         "authentication": "ON_USE"
       },
-      "category": "Productivity",
-      "description": "Install, connect, and use Feishu/Lark through the official lark-cli workflows.",
-      "icon": "./plugins/feishu2codex/assets/logo.svg"
+      "category": "Productivity"
     }
   ]
 }
