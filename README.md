@@ -12,6 +12,26 @@ A Git-backed Codex Marketplace for Feishu/Lark workflows through the official [L
 | --- | --- | --- |
 | `feishu2codex` | Adds 27 upstream Lark CLI Skills plus a guided setup Skill for Docs, Wiki, Base, messaging, calendar, tasks, meetings, mail, approvals, and more. | Node.js/npm for first-use runtime setup, plus Feishu/Lark OAuth authorization |
 
+## Features
+
+The plugin packages the agent-oriented workflows from the official [Lark CLI](https://github.com/larksuite/cli) so Codex can work across Feishu/Lark through structured CLI commands.
+
+| Area | Capabilities |
+| --- | --- |
+| Messaging | Send and reply to messages, search chat history, manage chats and members, handle media, reactions, interactive cards, and urgent notifications. |
+| Docs and Drive | Create, read, and edit documents; upload, download, organize, search, import, and export files; manage permissions, comments, versions, and secure labels. |
+| Markdown, Wiki, and Whiteboards | Edit native Markdown files, manage knowledge spaces and nodes, and inspect or update embedded whiteboards. |
+| Sheets and Base | Build and edit spreadsheets, formulas, charts, pivot tables, and formatting; manage Base tables, fields, records, views, forms, dashboards, workflows, and roles. |
+| Slides | Create presentations, read slide content, and add, remove, or update individual slides. |
+| Calendar and Tasks | Manage events, attendees, rooms, availability, and scheduling; create and organize tasks, lists, subtasks, reminders, assignees, and attachments. |
+| Meetings and Minutes | Search past meetings, retrieve summaries, action items, chapters, transcripts, recordings, and Minutes artifacts; support authorized in-meeting agent actions. |
+| Mail and Contacts | Search, read, draft, send, reply to, and forward mail; manage mail rules and resolve people by name, email, phone number, or Open ID. |
+| Approvals, Attendance, and OKRs | Query and process approval tasks and instances, inspect personal attendance records, and manage objectives, key results, alignment, metrics, and progress. |
+| Apps, Events, and Automation | Create and publish Miaoda/Spark apps, manage environments and automation, consume real-time Feishu events, and generate meeting-summary or standup reports. |
+| Extensibility | Explore raw Feishu OpenAPI operations not covered by existing commands and package repeatable API workflows as custom Skills. |
+
+Lark CLI supports user and bot identities, scoped OAuth, structured JSON output, dry-run previews, and confirmation gates for high-risk writes. The plugin keeps those controls in the Codex workflow.
+
 ## Add This Marketplace to Codex
 
 ### Desktop app
@@ -71,18 +91,6 @@ Credentials remain local to the user. Grant only the scopes needed for the inten
 codex plugin marketplace upgrade codex-lark
 codex plugin add feishu2codex@codex-lark
 ```
-
-## Migrating from the Former Combined Marketplace
-
-The original `codex-plugins` Marketplace was split into this repository and [codex-exa](https://github.com/zlsbksdxl/codex-exa). If the former Marketplace is still configured, remove its installed plugins and source before adding the two new repositories:
-
-```bash
-codex plugin remove exa@codex-plugins
-codex plugin remove feishu2codex@codex-plugins
-codex plugin marketplace remove codex-plugins
-```
-
-Then add `codex-lark` using the commands above and add `codex-exa` from its own README.
 
 ## Repository Structure
 
