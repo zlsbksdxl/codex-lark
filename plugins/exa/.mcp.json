@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "exa": {
+      "command": "./scripts/exa-mcp",
+      "cwd": "."
+    }
+  }
+}

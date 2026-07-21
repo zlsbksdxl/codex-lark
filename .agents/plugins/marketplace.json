@@ -1,0 +1,32 @@
+{
+  "name": "zlsbksdxl-codex-plugins",
+  "interface": {
+    "displayName": "zlsbksdxl Codex Plugins"
+  },
+  "plugins": [
+    {
+      "name": "exa",
+      "source": {
+        "source": "local",
+        "path": "./plugins/exa"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "feishu2codex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/feishu2codex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

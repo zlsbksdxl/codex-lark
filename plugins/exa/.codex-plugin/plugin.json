@@ -1,0 +1,39 @@
+{
+  "name": "exa",
+  "version": "0.1.0",
+  "description": "Community Codex plugin for web search and full-page retrieval through the official Exa MCP server.",
+  "author": {
+    "name": "zlsbksdxl",
+    "url": "https://github.com/zlsbksdxl"
+  },
+  "homepage": "https://github.com/zlsbksdxl/codex-plugins/tree/main/plugins/exa",
+  "repository": "https://github.com/zlsbksdxl/codex-plugins",
+  "license": "MIT",
+  "keywords": [
+    "exa",
+    "web-search",
+    "research",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Exa Web Search",
+    "shortDescription": "Search and fetch current web sources with Exa.",
+    "longDescription": "Adds the official Exa MCP server to Codex, with an implicitly triggered skill that prioritizes Exa for online research, current information, source discovery, and URL reading. Requires the user's own Exa API key.",
+    "developerName": "zlsbksdxl",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Search the web for current sources on this topic.",
+      "Research this question with Exa and cite the sources.",
+      "Read and summarize this webpage with Exa."
+    ],
+    "brandColor": "#111111",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg"
+  },
+  "mcpServers": "./.mcp.json"
+}
