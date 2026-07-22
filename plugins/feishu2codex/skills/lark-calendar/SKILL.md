@@ -88,7 +88,7 @@ lark-cli calendar +freebusy --start 2026-03-11 --end 2026-03-12 --user-id ou_xxx
 用法提示：
 - **仅判断是否有空** → `+freebusy`；**需要日程详情** → `+agenda`。
 - 检查多人可用性：分别调用并对比，找共同空闲。
-- 预约/改约场景下，调用规则（参与人过多、含群组、来自 `+suggestion` 等）详见 [schedule-clear-time.md § 查询忙闲](references/lark-calendar-schedule-clear-time.md#2-查询忙闲)。
+- 预约/改约场景下，调用规则（参与人过多、含群组、来自 `+suggestion` 等）详见 [schedule-clear-time.md 的“查询忙闲”章节](references/lark-calendar-schedule-clear-time.md)。
 
 ## 前置条件路由
 
