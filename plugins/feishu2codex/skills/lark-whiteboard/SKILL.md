@@ -29,8 +29,8 @@ metadata:
 | 检查画板是否由代码绘制                             | [`+query --output_as code`](references/lark-whiteboard-query.md)                              |
 | 仅微调节点文字/颜色                         | `+query --output_as raw` → 手动改 JSON → `+update --input_format raw`                            |
 | 用户**已提供** Mermaid/PlantUML/SVG 代码，或明确指定用该格式 | 自己生成/使用代码 → [`+update --input_format mermaid/plantuml/svg`](references/lark-whiteboard-update.md) |
-| 新建/创作复杂图表（架构/流程/组织等）                    | → **[§ 创作 Workflow](references/lark-whiteboard-workflow.md#创作-workflow)**                     |
-| 修改/重绘已有画板                               | → **[§ 修改 Workflow](references/lark-whiteboard-workflow.md#修改-workflow)**                     |
+| 新建/创作复杂图表（架构/流程/组织等）                    | → **[创作 Workflow](references/lark-whiteboard-workflow.md)**                     |
+| 修改/重绘已有画板                               | → **[修改 Workflow](references/lark-whiteboard-workflow.md)**                     |
 
 ## Shortcuts
 

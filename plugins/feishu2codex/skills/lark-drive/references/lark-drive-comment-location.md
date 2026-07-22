@@ -123,14 +123,14 @@ lark-cli docs +fetch --doc '<doc_token_or_url>' --detail with-ids
   "quote": "画板节点文本",
   "relation": null,
   "parent_type": "WHITEBOARD_BLOCK",
-  "parent_token": "whiteboard_token_xxx"
+  "parent_token": "example"
 }
 ```
 
 此时 `parent_token` 对应 `docs +fetch --detail with-ids` 结果中 `<whiteboard>` 的 `token` 属性，例如：
 
 ```xml
-<whiteboard id="whiteboard_block_id_xxx" token="whiteboard_token_xxx"></whiteboard>
+<whiteboard id="example-block" token="example"></whiteboard>
 ```
 
 匹配到这个 `<whiteboard>` 后，`id` 就是文档正文里的父级画板 block id。定位粒度是文档里的画板 block；如果需要继续定位到画板内部具体节点，需要再用画板能力读取画板内部结构。
